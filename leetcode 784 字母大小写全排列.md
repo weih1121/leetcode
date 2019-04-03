@@ -22,3 +22,23 @@ class Solution:
         return res
 ```
 
+```python
+# 解法二 递归
+class Solution:
+    def letterCasePermutation(self, S: str) -> List[str]:
+        def permutation(s, index, prefix):
+            if index > len(s) - 1:
+                return prefix
+
+            tmp = []
+            for p in prefix:
+                if s[index].isdigit():
+                    tmp.append(p + s[index])
+                else:
+                    tmp.append(p + s[index].lower())
+                    tmp.append(p + s[index].upper())
+            res = permutation(s, index + 1, tmp)
+            return res
+        return permutation(S, 0, [''])
+```
+
